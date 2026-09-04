@@ -1,5 +1,13 @@
 # Cognitive Digital Beamforming for Jammer-Resilient Systems
 
+**Trabajo Fin de Máster (TFM)**  
+**Máster Universitario en Ingeniería de Telecomunicación (MUIT)**  
+**ETSI de Telecomunicación — Universidad Politécnica de Madrid (ETSIT-UPM)**  
+**Author:** Rodrigo Pérez Iglesias
+
+**Project website:** [https://rodriperez194.github.io/tfm-cognitive-dbf/](https://rodriperez194.github.io/tfm-cognitive-dbf/)  
+**GitHub repository:** [https://github.com/rodriperez194/tfm-cognitive-dbf](https://github.com/rodriperez194/tfm-cognitive-dbf)
+
 This repository contains the Python simulation framework developed for the Master's Thesis **Cognitive Digital Beamforming for Jammer-Resilient Systems**. It combines narrow-band array modelling, conventional and adaptive digital beamforming, jammer motion models, MUSIC direction-of-arrival (DOA) estimation, multi-target tracking, and Deep Reinforcement Learning (DRL).
 
 The main entry point for reviewing the complete framework is [`demo.ipynb`](demo.ipynb). It runs one reproducible multi-jammer example with the selected Phase 11 agent:
@@ -21,13 +29,13 @@ flowchart TD
     G --> H[SINR and radiation-pattern evaluation]
 ```
 
-The SOI is fixed and known. MUSIC and the Tracker therefore process the jammers only. The Tracker supplies jammer unit vectors and unit-vector velocities to the trained policy. The policy predicts the SOI direction, the jammer directions, and one normalized predictive-null width per jammer. The resulting beamforming weights are held for (K=20) physical policy steps.
+The SOI is fixed and known. MUSIC and the Tracker therefore process the jammers only. The Tracker supplies jammer unit vectors and unit-vector velocities to the trained policy. The policy predicts the SOI direction, the jammer directions, and one normalized predictive-null width per jammer. The resulting beamforming weights are held for \(K=20\) physical policy steps.
 
 The notebook compares the cognitive agent with:
 
 - conventional SOI steering;
 - tracker-driven multi-interference nulling;
-- tracker-driven MVDR with the same (K=20) update cadence;
+- tracker-driven MVDR with the same \(K=20\) update cadence;
 - instantaneous Oracle MVDR, recomputed from true jammer DOAs at every simulation sample.
 
 It reports and plots output SINR, SOI-gain loss, jammer leakage, null depth, physical trajectories, MUSIC detections, Tracker outputs, and visible-hemisphere beampatterns. A separate one-step rollout through `BeamformingEnvPhase11` verifies compatibility between the saved SAC model and its original Gymnasium environment.
@@ -37,9 +45,8 @@ It reports and plots output SINR, SOI-gain loss, jammer leakage, null depth, phy
 Python 3.10 or later is required.
 
 ```bash
-git clone https://github.com/rodriperez194/TFM_demo.git
-cd TFM_demo
-
+git clone https://github.com/rodriperez194/tfm-cognitive-dbf.git
+cd tfm-cognitive-dbf
 python -m venv .venv
 ```
 
@@ -83,7 +90,7 @@ The notebook can also be opened directly in VS Code after selecting the virtual-
 | Observation dimension | 24 |
 | Action | SOI unit vector + per-jammer unit vector and null-width parameter |
 | Action dimension | 15 |
-| Weight hold | (K=20) steps |
+| Weight hold | \(K=20\) steps |
 | Policy time step | 1 s |
 | Predictive zeros | 3 per active jammer |
 | Weight synthesis | `target_or_zero_weights` |
@@ -92,6 +99,7 @@ The saved model and its complete metadata are stored in:
 
 ```text
 simulation/drl_agent/saved_agents/phase_11/direction_width_sac/
+
 ├── phase11_agent_direction_width_K20_mixed_002.json
 └── phase11_agent_direction_width_K20_mixed_002.zip
 ```
@@ -119,24 +127,32 @@ The notebook contains an executable catalogue and a loader that checks each save
 
 ### Static direction-policy phases
 
-- **Phase 1:** construct the 11D normalized-angle state with all jammer slots set to zero. Load with TD3. The saved action is in [-1, 1]^2 and must be mapped to the environment's [0, 1]^2 range with `a_env = 0.5 * (a_agent + 1.0)`. Evaluate one static no-jammer step.
+- **Phase 1:** construct the 11D normalized-angle state with all jammer slots set to zero. Load with TD3. The saved action is in `[-1, 1]^2` and must be mapped to the environment's `[0, 1]^2` range with `a_env = 0.5 * (a_agent + 1.0)`. Evaluate one static no-jammer step.
+
 - **Phase 2:** use `BeamformingEnv` with unit-vector observation/action. The 15D state contains the SOI unit vector and zero-filled jammer slots; the 3D action is the steering unit vector. Load with SAC and evaluate one static no-jammer step.
+
 - **Phase 3:** use `BeamformingEnvPhase3` with exactly one static jammer, unit-vector observation/action, MVDR beamforming, and the same-beamforming-mode reference. The 15D observation contains SOI plus one jammer and padding; the 6D action predicts both directions. Load with SAC and let the environment generate MVDR weights.
-- **Phase 4:** use `BeamformingEnvPhase4` with unit-vector observation/action, MVDR beamforming, and the mixed [0, 1, 2, 3] jammer distribution. The 15D observation uses direction-plus-mask slots; the 12D action contains one SOI and three jammer unit vectors. It remains a static one-step policy.
+
+- **Phase 4:** use `BeamformingEnvPhase4` with unit-vector observation/action, MVDR beamforming, and the mixed `[0, 1, 2, 3]` jammer distribution. The 15D observation uses direction-plus-mask slots; the 12D action contains one SOI and three jammer unit vectors. It remains a static one-step policy.
 
 ### Dynamic weight-control phases
 
 No best checkpoint ID is asserted here for Phases 5–9 because the available project evidence does not identify a final retained selection for those phases. Select a concrete checkpoint from its evaluation results, then treat its adjacent JSON metadata as authoritative.
 
 - **Phase 5 — `BeamformingEnvPhase5`:** reproduce the checkpoint's observation mode, complex-weight mode, K, and jammer distribution. For the 6 × 6 array, the action is 36D for phase-only control or 72D for real/imaginary or magnitude/phase control. The action represents full complex weights for a dynamic K-step block.
+
 - **Phase 6 — module `beamforming_env_phase6`:** the module intentionally exports a class still named `BeamformingEnvPhase5`; import it exactly and optionally alias it locally. Its action is a residual around the SOI-steering base, so the residual type, scale, and K must match metadata. It is not an absolute Phase 5 weight vector.
+
 - **Phase 7 — `BeamformingEnvPhase7`:** reproduce the 11D or 15D geometry observation used for training. A 6 × 6 array uses a 72D direct real/imaginary action. The agent and Target-or-Zero teacher are held at the same K-step cadence.
+
 - **Phase 8 — `BeamformingEnvPhase8`:** preserve the sequential episode state. Its observation is 89D in angular mode or 93D in unit-vector mode: geometry, current normalized complex weights, and six physical-feedback values. Its 72D action is a real/imaginary residual around the fixed steering solution.
+
 - **Phase 9 — `BeamformingEnvPhase9`:** pass actions through the environment's scenario-dependent electromagnetic basis. With J coefficient jammer slots, the action dimension is `2 * (1 + 5J)`; the one-jammer specialist uses 12 real components. These are complex basis coefficients, not array weights or directions.
 
 ### K-specific phases
 
 - **Phase 10:** load the matching checkpoint with PPO and instantiate `BeamformingEnvPhase10` with the same K. The 15D observation has SOI/jammer unit vectors and masks but no velocities. The 36D action controls 18 independent complex modulation coefficients, which the environment expands using central 180° array symmetry.
+
 - **Phase 11:** load with SAC, retain the 24D direction-and-velocity observation and 15D direction-plus-width action, and set `weight_hold_steps` to the selected K. The retained K=1 setup uses an episode length of 2 physical steps; the K=5 and K=20 setups use 5 and 20 respectively.
 
 For every phase switch:
@@ -150,7 +166,7 @@ For every phase switch:
 
 ## Demo configuration
 
-The demonstration reuses the three-jammer definition in `simulation/scenarios/scenario_7.ipynb`: a fixed SOI and Truck, Aircraft, and Dummy jammer trajectories. Explicit seeds are applied to the stochastic motion models for repeatability. Received SOI and jammer powers are 1.0 in linear scale, and noise power is (10^{-3}), matching the Phase 11 agent configuration.
+The demonstration reuses the three-jammer definition in `simulation/scenarios/scenario_7.ipynb`: a fixed SOI and Truck, Aircraft, and Dummy jammer trajectories. Explicit seeds are applied to the stochastic motion models for repeatability. Received SOI and jammer powers are 1.0 in linear scale, and noise power is \(10^{-3}\), matching the Phase 11 agent configuration.
 
 MUSIC uses a 6 × 6 URA, 200 snapshots, a 1° polar grid, and a 2° azimuth grid. It is evaluated every three 0.1 s trajectory samples, giving a 0.3 s Tracker update period. The scenario signature is:
 
@@ -163,11 +179,19 @@ The repository's validated scenario result selects an IMM tracker with Hungarian
 ## Repository structure
 
 ```text
-TFM/
+tfm-cognitive-dbf/
+
 ├── demo.ipynb                         # Complete reproducible demonstration
 ├── README.md                          # Project and execution guide
 ├── requirements.txt                   # Python runtime dependencies
 ├── pyproject.toml                     # Installable tfm package configuration
+│
+├── docs/                              # GitHub Pages website
+│   ├── index.html
+│   ├── style.css
+│   └── assets/
+│       └── demo_beampatterns.png
+│
 ├── src/tfm/
 │   ├── estimation/narrow_band/        # MUSIC DOA estimation and peak extraction
 │   ├── math/narrow_band/              # Geometry, steering vectors, metrics, responses
@@ -179,6 +203,7 @@ TFM/
 │   ├── tracker/                       # CV, CA, IMM trackers, MTT, association policies
 │   ├── utils/                         # Angle, trajectory, and plotting helpers
 │   └── visuals/                       # Array visualization helpers
+│
 ├── simulation/                        # Development, training, and analysis notebooks
 └── evaluation/                        # Final evaluation notebooks
 ```
