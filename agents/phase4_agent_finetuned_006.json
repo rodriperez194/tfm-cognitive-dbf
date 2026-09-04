@@ -1,0 +1,196 @@
+{
+    "phase_name": "phase_4",
+    "experiment_name": "Phase 4 fine-tuning 006 from finetuned 004 mixed-jammer high-jammer-weight MVDR agent",
+    "agent_id": "phase4_agent_finetuned_006",
+    "training_type": "fine_tuning_stage_6_mixed_high_jammer_weight",
+    "base_agent_id": "phase4_agent_finetuned_004",
+    "base_model_path": "/kaggle/working/TFM/simulation/drl_agent/saved_agents/phase_4/finetuned_agents/phase4_agent_finetuned_004.zip",
+    "base_source_agent_id": "phase4_agent_finetuned_004",
+    "base_source_agent_index": null,
+    "base_reward_name": "jammer_priority_x4_finetune_stage4_micro_conservative",
+    "source_agent_id": "phase4_agent_finetuned_004",
+    "source_agent_index": null,
+    "source_reward_name": "jammer_priority_x8_finetune_stage6_mixed_high_jammer_weight",
+    "algorithm": "SAC",
+    "training_status": "completed",
+    "error_message": null,
+    "fine_tuning_timesteps": 75000,
+    "total_training_timesteps": 75000,
+    "training_time_sec": 956.1203498840332,
+    "global_seed": 42,
+    "agent_seed": 56,
+    "observation_mode": "unit_vector",
+    "action_mode": "unit_vector",
+    "beamforming_mode": "mvdr",
+    "reference_mode": "same_beamforming_mode",
+    "physical_setup": {
+        "num_rows": 6,
+        "num_cols": 6,
+        "carrier_freq": 10000000000.0,
+        "array_position": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "desired_power": 1.0,
+        "noise_power": 0.001,
+        "max_jammers": 3,
+        "num_active_jammers": null,
+        "active_jammers_choices": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "jammer_power_value": 1.0,
+        "jammer_powers": [
+            1.0
+        ],
+        "min_target_jammer_separation_deg": 5.0,
+        "mvdr_diagonal_loading": 0.0001,
+        "nulling_diagonal_loading": 1e-08
+    },
+    "training_distribution": {
+        "enabled": true,
+        "distribution_name": "mixed_0_1_2_3",
+        "num_active_jammers": null,
+        "active_jammers_choices": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "prob_0_jammers": 0.25,
+        "prob_1_jammer": 0.25,
+        "prob_2_jammers": 0.25,
+        "prob_3_jammers": 0.25,
+        "fine_tuning_timesteps": 75000,
+        "expected_fine_tuning_timesteps_per_jammer_count": 18750.0,
+        "interpretation": "This sixth fine-tuning stage returns to the mixed 0-1-2-3 jammer-count distribution used by the best general agent. The failed fixed-3j orientation of phase4_agent_finetuned_005 is not used as a source. The objective is to preserve global robustness while increasing the reward pressure on jammer angular accuracy."
+    },
+    "reward": {
+        "reward_name": "jammer_priority_x8_finetune_stage6_mixed_high_jammer_weight",
+        "base_reward_name": "jammer_priority_x4_finetune_stage4_micro_conservative",
+        "reward_alpha_sinr": 0.0,
+        "reward_beta_sinr_loss": 1.0,
+        "reward_gamma_soi_angle": 1.0,
+        "reward_gamma_jammer_angle": 8.0,
+        "reward_alpha_sinr_eff": 0.0,
+        "reward_beta_sinr_loss_eff": 1.0,
+        "reward_gamma_soi_angle_eff": 324.0,
+        "reward_gamma_jammer_angle_eff": 2592.0,
+        "sinr_scale_db": 30.0,
+        "sinr_loss_scale_db": 1.0,
+        "soi_angle_error_scale_deg": 10.0,
+        "jammer_angle_error_scale_deg": 10.0,
+        "max_sinr_loss_db": 60.0,
+        "reward_bonus_good_soi": 0.0,
+        "reward_bonus_good_jammer": 0.0,
+        "reward_bonus_good_sinr_loss": 0.0,
+        "soi_error_bonus_threshold_deg": 3.0,
+        "jammer_error_bonus_threshold_deg": 3.0,
+        "sinr_loss_bonus_threshold_db": 3.0,
+        "milestone_bonuses_enabled": false,
+        "reward_interpretation": "Sixth-stage mixed-distribution high-jammer-weight fine-tuning reward. The reward keeps the same SINR-loss and SOI angular terms as the previous best general agent, but doubles the jammer angular-error weight from gamma_jammer=4 to gamma_jammer=8. Milestone bonuses remain disabled so that the reward remains smooth."
+    },
+    "sac_hyperparameters": {
+        "policy_kwargs": {
+            "net_arch": [
+                128,
+                128
+            ]
+        },
+        "learning_rate": 5e-06,
+        "buffer_size": 300000,
+        "learning_starts": 1000,
+        "batch_size": 256,
+        "tau": 0.005,
+        "gamma": 0.99,
+        "train_freq": 1,
+        "gradient_steps": 1,
+        "ent_coef": "auto",
+        "seed": 56,
+        "device": "cpu"
+    },
+    "fine_tuning_setup": {
+        "base_model_loaded": true,
+        "base_agent_id": "phase4_agent_finetuned_004",
+        "base_model_path": "/kaggle/working/TFM/simulation/drl_agent/saved_agents/phase_4/finetuned_agents/phase4_agent_finetuned_004.zip",
+        "new_agent_id": "phase4_agent_finetuned_006",
+        "fine_tuning_timesteps": 75000,
+        "reset_num_timesteps": false,
+        "learning_rate_reduced": true,
+        "previous_fine_tuning_learning_rate": 1e-05,
+        "fine_tuning_learning_rate": 5e-06,
+        "fine_tuning_strategy": "sixth_stage_mixed_high_jammer_weight_continuation",
+        "objective": "Continue from phase4_agent_finetuned_004 with the same mixed 0-1-2-3 training distribution, while increasing the jammer angular error weight. The expected effect is to improve or preserve jammer direction accuracy without causing the catastrophic forgetting observed in phase4_agent_finetuned_005."
+    },
+    "base_agent_reference": {
+        "base_agent_id": "phase4_agent_finetuned_004",
+        "discarded_agent_id": "phase4_agent_finetuned_005",
+        "description": "The base model is phase4_agent_finetuned_004, the best general Phase 4 agent. The phase4_agent_finetuned_005 checkpoint is intentionally not used as a source because the fixed-3j-only fine-tuning degraded both global and fixed-3j metrics.",
+        "source_configuration": {
+            "algorithm": "SAC",
+            "beamforming_mode": "mvdr",
+            "observation_mode": "unit_vector",
+            "action_mode": "unit_vector",
+            "reference_mode": "same_beamforming_mode",
+            "distribution_name": "mixed_0_1_2_3",
+            "num_active_jammers": null,
+            "active_jammers_choices": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "reward_name": "jammer_priority_x4_finetune_stage4_micro_conservative",
+            "reward_alpha_sinr": 0.0,
+            "reward_beta_sinr_loss": 1.0,
+            "reward_gamma_soi_angle": 1.0,
+            "reward_gamma_jammer_angle": 4.0,
+            "reward_bonus_good_soi": 0.0,
+            "reward_bonus_good_jammer": 0.0,
+            "reward_bonus_good_sinr_loss": 0.0,
+            "policy_net_arch": [
+                128,
+                128
+            ],
+            "fine_tuning_learning_rate": 1e-05
+        }
+    },
+    "design_hypothesis": {
+        "description": "This notebook performs a sixth fine-tuning stage from phase4_agent_finetuned_004. Unlike phase4_agent_finetuned_005, the training distribution is not fixed to 3 jammers. Instead, it restores the four-case mixed distribution and increases only the jammer angular reward weight. The learning rate is reduced to 5e-6 because the reward landscape is changed.",
+        "expected_effect": [
+            "Preserve global mixed 0-1-2-3 performance.",
+            "Avoid the degradation observed in phase4_agent_finetuned_005.",
+            "Increase pressure on jammer angular accuracy.",
+            "Try to improve jammer-related behavior in 2j and 3j cases.",
+            "Maintain SOI angular accuracy.",
+            "Maintain numerical stability.",
+            "Use evaluation to decide whether gamma_jammer=8 is beneficial or too aggressive."
+        ]
+    },
+    "paths": {
+        "base_model_path": "/kaggle/working/TFM/simulation/drl_agent/saved_agents/phase_4/finetuned_agents/phase4_agent_finetuned_004.zip",
+        "model_path": "/kaggle/working/outputs/saved_agents/phase_4/finetuned_agents/phase4_agent_finetuned_006.zip",
+        "metadata_path": "/kaggle/working/outputs/saved_agents/phase_4/finetuned_agents/phase4_agent_finetuned_006.json",
+        "training_report_path": "/kaggle/working/outputs/results/phase_4/finetuned_agents_training/phase4_agent_finetuned_006_training_report.json",
+        "training_rewards_path": "/kaggle/working/outputs/results/phase_4/finetuned_agents_training/phase4_agent_finetuned_006_training_rewards.csv",
+        "monitor_log_dir": "/kaggle/working/outputs/results/phase_4/finetuned_agents_training/monitor_logs"
+    },
+    "notes": [
+        "This notebook fine-tunes an existing agent instead of training from scratch.",
+        "The base model is phase4_agent_finetuned_004.",
+        "The failed phase4_agent_finetuned_005 checkpoint is intentionally skipped.",
+        "The new model is phase4_agent_finetuned_006.",
+        "The training distribution is mixed 0, 1, 2 and 3 active jammers.",
+        "The fine-tuning budget is 75k one-step episodes.",
+        "The reward uses alpha=0, beta=1, gamma_soi=1, gamma_jammer=8.",
+        "Milestone bonuses remain disabled.",
+        "The learning rate is reduced to 5e-6.",
+        "The model is trained on CPU for Kaggle compatibility.",
+        "Heavy outputs are written under OUTPUT_ROOT so that Kaggle results can be packaged separately from the cloned repository.",
+        "No final environment evaluation is performed in this notebook.",
+        "A separate evaluation notebook should be used after training."
+    ]
+}

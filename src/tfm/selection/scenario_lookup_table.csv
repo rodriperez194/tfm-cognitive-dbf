@@ -1,0 +1,57 @@
+target_signature,recommended_policy,recommended_tracker
+0x_none,none,none
+2x_aircraft + 1x_static,greedy,CV
+1x_aircraft + 1x_static + 1x_truck,priority,CV
+1x_aircraft + 1x_drone + 1x_static,greedy,CA
+1x_static + 2x_truck,hungarian,CV
+1x_drone + 1x_static + 1x_truck,priority,CV
+2x_drone + 1x_static,priority,CV
+3x_dummy,greedy,CA
+1x_aircraft + 2x_dummy,scorebased_hungarian,IMM
+2x_dummy + 1x_truck,priority,IMM
+1x_drone + 2x_dummy,scorebased_hungarian,CV
+2x_aircraft + 1x_dummy,hungarian,CA
+1x_drone + 1x_dummy + 1x_static,hungarian,CV
+1x_aircraft + 1x_dummy + 1x_truck,hungarian,IMM
+1x_dummy + 2x_truck,scorebased_hungarian,CA
+1x_drone + 1x_dummy + 1x_truck,priority,IMM
+2x_drone + 1x_dummy,hungarian,CA
+3x_aircraft,greedy,CV
+2x_aircraft + 1x_truck,hungarian,CV
+2x_aircraft + 1x_drone,scorebased_hungarian,CV
+1x_aircraft + 2x_truck,hungarian,CA
+1x_aircraft + 1x_drone + 1x_truck,hungarian,IMM
+1x_aircraft + 2x_drone,greedy,CV
+3x_truck,scorebased_hungarian,CA
+1x_drone + 2x_truck,hungarian,IMM
+1x_aircraft + 1x_drone + 1x_dummy,scorebased_hungarian,CV
+1x_dummy + 1x_static + 1x_truck,scorebased_hungarian,CV
+1x_aircraft + 1x_dummy + 1x_static,greedy,CV
+2x_dummy + 1x_static,priority,CA
+1x_static,hungarian,CV
+1x_dummy,hungarian,CA
+1x_aircraft,scorebased_hungarian,IMM
+1x_truck,scorebased_hungarian,CA
+1x_drone,hungarian,CA
+2x_static,hungarian,CV
+1x_dummy + 1x_static,hungarian,CA
+1x_aircraft + 1x_static,greedy,IMM
+1x_static + 1x_truck,priority,CA
+1x_drone + 1x_static,scorebased_hungarian,CA
+2x_dummy,priority,IMM
+1x_aircraft + 1x_dummy,scorebased_hungarian,CA
+1x_dummy + 1x_truck,scorebased_hungarian,CA
+1x_drone + 1x_dummy,priority,IMM
+2x_aircraft,greedy,CV
+1x_aircraft + 1x_truck,hungarian,IMM
+1x_aircraft + 1x_drone,greedy,CV
+2x_truck,greedy,IMM
+1x_drone + 1x_truck,scorebased_hungarian,IMM
+2x_drone,hungarian,CA
+3x_static,hungarian,CV
+1x_dummy + 2x_static,hungarian,CV
+1x_aircraft + 2x_static,hungarian,IMM
+2x_static + 1x_truck,hungarian,CV
+1x_drone + 2x_static,scorebased_hungarian,CV
+2x_drone + 1x_truck,greedy,CV
+3x_drone,scorebased_hungarian,CA

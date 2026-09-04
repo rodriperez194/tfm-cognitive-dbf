@@ -1,0 +1,117 @@
+{
+    "agent_id": "phase3_grid_agent_012",
+    "agent_index": 12,
+    "experiment_name": "Phase 3 scaled reward grid - nulling and MVDR",
+    "phase_name": "phase_3",
+    "grid_name": "reward_grid_nulling_mvdr",
+    "algorithm": "SAC",
+    "training_status": "completed",
+    "model_path": "/home/ropeig_fr/TFM/simulation/drl_agent/saved_agents/phase_3/reward_grid_nulling_mvdr/phase3_grid_agent_012.zip",
+    "metadata_path": "/home/ropeig_fr/TFM/simulation/drl_agent/saved_agents/phase_3/reward_grid_nulling_mvdr/phase3_grid_agent_012.json",
+    "eval_samples_path": "/home/ropeig_fr/TFM/simulation/drl_agent/results/phase_3/reward_grid_nulling_mvdr/eval_samples/phase3_grid_agent_012_eval_samples.csv",
+    "monitor_csv_path": "/home/ropeig_fr/TFM/simulation/drl_agent/results/phase_3/reward_grid_nulling_mvdr/monitor_logs/phase3_grid_agent_012_monitor.csv",
+    "training_time_seconds": 998.7347950935364,
+    "total_training_timesteps": 100000,
+    "evaluation_samples": 5000,
+    "representation": {
+        "observation_mode": "unit_vector",
+        "action_mode": "unit_vector"
+    },
+    "beamforming": {
+        "beamforming_mode": "mvdr",
+        "reference_mode": "same_beamforming_mode",
+        "mvdr_diagonal_loading": 0.0001
+    },
+    "physical_setup": {
+        "num_rows": 6,
+        "num_cols": 6,
+        "carrier_freq_hz": 10000000000.0,
+        "array_position": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "desired_power": 1.0,
+        "noise_power": 0.001,
+        "max_jammers": 3,
+        "num_active_jammers": 1,
+        "jammer_powers": [
+            1.0
+        ],
+        "min_target_jammer_separation_deg": 5.0
+    },
+    "reward": {
+        "reward_name": "gap_jammer_priority_b2_s1_j2",
+        "interpretable_alpha_sinr": 0.0,
+        "interpretable_beta_sinr_loss": 2.0,
+        "interpretable_gamma_soi_angle": 1.0,
+        "interpretable_gamma_jammer_angle": 2.0,
+        "sinr_scale_db": 30.0,
+        "sinr_loss_scale_db": 1.0,
+        "soi_angle_error_scale_deg": 10.0,
+        "jammer_angle_error_scale_deg": 10.0,
+        "reward_coefficients": {
+            "reward_alpha_sinr": 0.0,
+            "reward_beta_sinr_loss": 2.0,
+            "reward_gamma_soi_angle": 324.0,
+            "reward_gamma_jammer_angle": 648.0,
+            "interpretable_alpha_sinr": 0.0,
+            "interpretable_beta_sinr_loss": 2.0,
+            "interpretable_gamma_soi_angle": 1.0,
+            "interpretable_gamma_jammer_angle": 2.0,
+            "sinr_component_scale_db": 30.0,
+            "sinr_loss_component_scale_db": 1.0,
+            "soi_angle_component_scale": 0.0030864197530864196,
+            "jammer_angle_component_scale": 0.0030864197530864196,
+            "soi_angle_error_scale_deg": 10.0,
+            "jammer_angle_error_scale_deg": 10.0,
+            "reward_definition": "Scaled hybrid reward coefficients for BeamformingEnvPhase5. Effective coefficients are computed as: alpha_eff = alpha / sinr_scale_db, beta_eff = beta / sinr_loss_scale_db, gamma_soi_eff = gamma_soi / ((soi_angle_error_scale_deg / 180)^2), gamma_jammer_eff = gamma_jammer / ((jammer_angle_error_scale_deg / 180)^2)."
+        },
+        "reward_bonus_good_soi": 0.0,
+        "reward_bonus_good_jammer": 0.0,
+        "reward_bonus_good_sinr_loss": 0.0,
+        "soi_error_bonus_threshold_deg": 3.0,
+        "jammer_error_bonus_threshold_deg": 5.0,
+        "sinr_loss_bonus_threshold_db": 1.0,
+        "max_sinr_loss_db": 60.0
+    },
+    "sac_hyperparameters": {
+        "learning_rate": 0.0003,
+        "buffer_size": 100000,
+        "learning_starts": 1000,
+        "batch_size": 256,
+        "tau": 0.005,
+        "gamma": 0.99,
+        "train_freq": 1,
+        "gradient_steps": 1,
+        "ent_coef": "auto",
+        "net_arch": [
+            64,
+            64
+        ]
+    },
+    "eval_summary": {
+        "num_eval_samples": 5000,
+        "reward_mean": -11.589853634025864,
+        "reward_std": 12.676626209488989,
+        "sinr_mean_db": 39.72729529350078,
+        "reference_sinr_mean_db": 45.37836274999705,
+        "reference_steering_sinr_mean_db": 28.583423329369555,
+        "sinr_loss_mean_db": 5.651067456496272,
+        "sinr_loss_std_db": 6.302416901138025,
+        "sinr_loss_p95_db": 18.98706068356287,
+        "sinr_loss_max_db": 31.471103147912885,
+        "soi_angle_error_mean_deg": 4.137619499632524,
+        "soi_angle_error_p95_deg": 7.71856499441468,
+        "soi_angle_error_max_deg": 13.089391420311554,
+        "jammer_action_error_mean_deg": 1.6406172960325378,
+        "jammer_action_error_p95_deg": 3.6109506552262,
+        "jammer_action_error_max_deg": 6.613895247051311,
+        "pct_sinr_loss_lt_0p1_db": 2.98,
+        "pct_sinr_loss_lt_0p5_db": 15.879999999999999,
+        "pct_sinr_loss_lt_1p0_db": 27.26,
+        "pct_soi_error_lt_3_deg": 31.979999999999997,
+        "pct_jammer_error_lt_5_deg": 98.96000000000001,
+        "pct_numerical_error": 0.0
+    }
+}

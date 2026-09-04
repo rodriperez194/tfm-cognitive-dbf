@@ -1,0 +1,162 @@
+{
+    "phase_name": "phase_10",
+    "storage_phase_name": "phase_10",
+    "experiment_name": "Phase 10 symmetric real-imag K1 mixed 0to3 jammers agent 011 PPO continuation from mixed_010 with increased exploration",
+    "agent_id": "phase10_agent_symmetric_real_imag_K1_mixed_011",
+    "algorithm": "PPO",
+    "training_type": "symmetric_real_imag_K1_mixed_0to3_PPO_increased_exploration",
+    "training_status": "completed",
+    "error_message": null,
+    "training_time_sec": 949.1557643413544,
+    "initialization": {
+        "type": "continued_from_phase10_K1_mixed_010",
+        "used_pretrained_actor": true,
+        "source_algorithm": "PPO",
+        "base_agent_id": "phase10_agent_symmetric_real_imag_K1_mixed_010",
+        "base_model_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_010.zip",
+        "base_metadata_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_010.json",
+        "initial_model_timesteps": 503808,
+        "reinitialized_actor": false,
+        "reinitialized_optimizer": false,
+        "replay_buffer": null,
+        "replay_buffer_warmup": null,
+        "policy_origin": {
+            "type": "steering_equivalent_initialization_in_mixed_009",
+            "real_modulation_mean": 0.9,
+            "imag_modulation_mean": 0.0,
+            "initial_action_std": 0.05
+        },
+        "exploration_change": {
+            "type": "set_global_action_std_after_loading_mixed_010",
+            "action_std_before_mean": 0.1593712597257561,
+            "action_std_target": 0.1,
+            "deterministic_actor_changed": false
+        }
+    },
+    "training_timesteps_requested": 250000,
+    "training_timesteps_completed": 251904,
+    "final_model_num_timesteps": 755712,
+    "run_environment": "local",
+    "global_seed": 42,
+    "agent_seed": 757,
+    "device": "cpu",
+    "array": {
+        "num_rows": 6,
+        "num_cols": 6,
+        "num_elements": 36,
+        "carrier_freq_hz": 10000000000.0,
+        "normalize_power": true,
+        "normalized_total_weight_power": 36
+    },
+    "environment": {
+        "class_name": "BeamformingEnvPhase10",
+        "source_file": "beamforming_env_phase10.py",
+        "observation_mode": "unit_vector",
+        "complex_weight_mode": "real_imag",
+        "action_mode": "symmetric_steering_modulation_real_imag",
+        "observation_dim": 15,
+        "action_dim": 36,
+        "num_independent_complex_weights": 18,
+        "symmetry_mode": "central_180_steering_modulation",
+        "direct_weight_min_power": 1e-12,
+        "weight_hold_steps": 1,
+        "episode_length_physical_steps": 1,
+        "dt": 1.0,
+        "array_position": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "desired_power": 1.0,
+        "noise_power": 0.001,
+        "max_jammers": 3,
+        "num_active_jammers_fallback": 0,
+        "active_jammers_choices": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "jammer_powers": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "min_source_distance_m": 50.0,
+        "min_target_jammer_separation_deg": 5.0,
+        "mvdr_diagonal_loading": 0.0001,
+        "jammer_reward_mode": "continuous_outside_diagnostic_gate_extended_clip",
+        "soi_gate_mode": "hard",
+        "jammer_gate_mode": "diagnostic",
+        "environment_runtime_validation": {
+            "loaded_environment_file": "C:\\Users\\rodri\\TFM\\src\\tfm\\rl\\envs\\beamforming_env_phase10.py",
+            "environment_class": "BeamformingEnvPhase10",
+            "required_source_markers": [
+                "jammer_constraint_soft",
+                "reward_soft_jammer_violation",
+                "soft_diagnostic"
+            ],
+            "strict_training_environment_test_passed": true
+        }
+    },
+    "reward": {
+        "reward_failure_penalty": -10.0,
+        "reward_soi_max_gain_loss_db": 3.0,
+        "reward_jammer_max_mean_leakage": 0.01,
+        "reward_sinr_scale_db": 30.0,
+        "reward_valid_min": -2.0,
+        "reward_valid_max": 2.0,
+        "reward_teacher_similarity_weight": 1.0,
+        "reward_jammer_leakage_penalty_weight": 1.0,
+        "reward_jammer_leakage_penalty_scale": 0.005,
+        "reward_jammer_leakage_penalty_clip": 8.0,
+        "configuration_source": "identical_to_phase10_mixed_007"
+    },
+    "ppo": {
+        "policy": "MlpPolicy",
+        "policy_net_arch": [
+            256,
+            256
+        ],
+        "activation_fn": "ReLU",
+        "learning_rate": 0.0003,
+        "n_steps": 2048,
+        "batch_size": 256,
+        "n_epochs": 10,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.2,
+        "normalize_advantage": true,
+        "ent_coef": 0.01,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "reset_num_timesteps": false,
+        "progress_bar": true,
+        "initialization": {
+            "historical_actor_initialization": "steering_equivalent_in_mixed_009",
+            "historical_real_action_mean": 0.9,
+            "historical_imag_action_mean": 0.0,
+            "historical_initial_action_std": 0.05,
+            "continuation_action_std": 0.1
+        }
+    },
+    "methodological_comparison": {
+        "purpose": "Direct continuation of mixed_010 for another 250k timesteps. The environment, reward, action parameterization, network architecture and PPO optimization hyperparameters remain unchanged. The only experimental change is setting the Gaussian action standard deviation to 0.10 after loading the mixed_010 policy.",
+        "initialized_from_sac": false,
+        "comparison_reference_agent": "phase10_agent_symmetric_real_imag_K1_mixed_010"
+    },
+    "paths": {
+        "output_root": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent",
+        "save_dir": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo",
+        "results_dir": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\results\\phase_10\\symmetric_real_imag_ppo",
+        "base_model_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_010.zip",
+        "base_metadata_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_010.json",
+        "model_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_011.zip",
+        "metadata_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\saved_agents\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_011.json",
+        "monitor_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\results\\phase_10\\symmetric_real_imag_ppo\\monitor_logs\\phase10_agent_symmetric_real_imag_K1_mixed_011_monitor.csv",
+        "training_report_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\results\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_011_training_report.json",
+        "training_rewards_path": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\results\\phase_10\\symmetric_real_imag_ppo\\phase10_agent_symmetric_real_imag_K1_mixed_011_training_rewards.csv",
+        "checkpoint_dir": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\results\\phase_10\\symmetric_real_imag_ppo\\checkpoints",
+        "tensorboard_dir": "c:\\Users\\rodri\\TFM\\simulation\\drl_agent\\results\\phase_10\\symmetric_real_imag_ppo\\tensorboard"
+    }
+}
