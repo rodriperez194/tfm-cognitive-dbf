@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,18 +22,19 @@
          ============================================================ -->
 
     <header class="site-header">
-        <div class="container nav-container">
+        <div class="container header-content">
+
             <a class="site-name" href="#">
                 Cognitive DBF
             </a>
 
             <nav class="nav-links">
                 <a href="#overview">Overview</a>
-                <a href="#framework">Framework</a>
                 <a href="#demo">Demo</a>
                 <a href="#run">Run</a>
+
                 <a
-                    class="nav-github"
+                    class="github-link"
                     href="https://github.com/rodriperez194/tfm-cognitive-dbf"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -40,6 +42,7 @@
                     GitHub
                 </a>
             </nav>
+
         </div>
     </header>
 
@@ -51,6 +54,7 @@
              ======================================================== -->
 
         <section class="hero">
+
             <div class="container hero-content">
 
                 <p class="eyebrow">
@@ -64,13 +68,13 @@
 
                 <p class="hero-description">
                     A Python-based simulation framework for adaptive digital
-                    beamforming in dynamic electromagnetic environments,
-                    combining array processing, interference suppression,
-                    direction estimation, tracking and Deep Reinforcement
-                    Learning.
+                    beamforming in jammer-contested electromagnetic environments,
+                    combining antenna-array modelling, interference suppression,
+                    temporal tracking and Deep Reinforcement Learning.
                 </p>
 
                 <div class="hero-actions">
+
                     <a
                         class="button button-primary"
                         href="https://github.com/rodriperez194/tfm-cognitive-dbf"
@@ -88,11 +92,17 @@
                     >
                         Open demo notebook
                     </a>
+
                 </div>
 
+
                 <div class="academic-info">
+
                     <div>
-                        <span class="academic-label">Programme</span>
+                        <span class="academic-label">
+                            Programme
+                        </span>
+
                         <span>
                             Máster Universitario en Ingeniería de Telecomunicación
                             (MUIT)
@@ -100,14 +110,19 @@
                     </div>
 
                     <div>
-                        <span class="academic-label">School</span>
+                        <span class="academic-label">
+                            Institution
+                        </span>
+
                         <span>
                             ETSI de Telecomunicación · Universidad Politécnica de Madrid
                         </span>
                     </div>
+
                 </div>
 
             </div>
+
         </section>
 
 
@@ -116,230 +131,66 @@
              ======================================================== -->
 
         <section id="overview" class="section">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <p class="section-index">01 · Project Overview</p>
+
+                    <p class="section-label">
+                        Project Overview
+                    </p>
 
                     <h2>
-                        Adaptive beamforming under dynamic interference
+                        Adaptive beamforming against dynamic jammers
                     </h2>
 
                     <p>
-                        Modern radar and sensing systems may operate in
-                        electromagnetic environments affected by multiple
-                        directional interference sources. Static beamforming
-                        strategies can become insufficient when those
-                        conditions evolve over time.
+                        The project develops a modular simulation framework in which
+                        the complex weights of a digital antenna array are adapted to
+                        preserve reception of a known Signal of Interest (SOI) while
+                        suppressing multiple directional jammers.
                     </p>
 
-                    <p>
-                        This project develops a modular simulation framework
-                        in which digital beamforming weights can be adapted
-                        dynamically while preserving the response towards the
-                        Signal of Interest (SOI).
-                    </p>
                 </div>
 
 
                 <div class="feature-grid">
 
                     <article class="feature-card">
-                        <span class="feature-number">01</span>
-
-                        <h3>Digital Array Model</h3>
+                        <h3>Array Model</h3>
 
                         <p>
-                            Narrowband antenna-array modelling with complex
-                            steering vectors, configurable geometry and
-                            beamforming weights.
+                            Narrowband antenna-array simulation with configurable
+                            geometry, steering vectors and complex beamforming weights.
                         </p>
                     </article>
 
 
                     <article class="feature-card">
-                        <span class="feature-number">02</span>
-
-                        <h3>Classical Beamforming</h3>
+                        <h3>Reference Beamformers</h3>
 
                         <p>
-                            Reference beamformers including conventional
-                            steering, deterministic interference nulling and
-                            MVDR-based approaches.
+                            Conventional steering, deterministic interference nulling
+                            and MVDR-based solutions provide classical reference
+                            methods.
                         </p>
                     </article>
 
 
                     <article class="feature-card">
-                        <span class="feature-number">03</span>
-
-                        <h3>Multi-Jammer Scenarios</h3>
-
-                        <p>
-                            Dynamic scenarios containing a known SOI and
-                            multiple directional jammers with configurable
-                            power and motion.
-                        </p>
-                    </article>
-
-
-                    <article class="feature-card">
-                        <span class="feature-number">04</span>
-
-                        <h3>Perception and Tracking</h3>
-
-                        <p>
-                            Direction-of-arrival information can be integrated
-                            with temporal tracking to provide estimated jammer
-                            directions to the beamforming controller.
-                        </p>
-                    </article>
-
-
-                    <article class="feature-card">
-                        <span class="feature-number">05</span>
-
                         <h3>Cognitive Control</h3>
 
                         <p>
-                            Deep Reinforcement Learning agents learn policies
-                            that adapt the beamforming configuration according
-                            to the observed electromagnetic scenario.
-                        </p>
-                    </article>
-
-
-                    <article class="feature-card">
-                        <span class="feature-number">06</span>
-
-                        <h3>Physical Metrics</h3>
-
-                        <p>
-                            Performance evaluation through SINR, SOI gain,
-                            jammer suppression and radiation-pattern analysis.
+                            Deep Reinforcement Learning policies adapt the beamforming
+                            configuration according to the jammer scenario and its
+                            temporal evolution.
                         </p>
                     </article>
 
                 </div>
-            </div>
-        </section>
-
-
-        <!-- ========================================================
-             Framework
-             ======================================================== -->
-
-        <section id="framework" class="section section-alt">
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="section-index">02 · Framework</p>
-
-                    <h2>
-                        Modular processing and decision pipeline
-                    </h2>
-
-                    <p>
-                        The framework separates the physical simulation,
-                        perception and beamforming-control components. This
-                        makes it possible to evaluate individual modules and
-                        compare cognitive policies against classical
-                        beamforming references under equivalent scenarios.
-                    </p>
-                </div>
-
-
-                <div class="architecture">
-
-                    <div class="architecture-block">
-                        <span>1</span>
-                        <h3>Scenario</h3>
-                        <p>
-                            SOI, jammers, motion, powers and noise.
-                        </p>
-                    </div>
-
-                    <div class="architecture-arrow">→</div>
-
-                    <div class="architecture-block">
-                        <span>2</span>
-                        <h3>Array</h3>
-                        <p>
-                            Geometry, propagation and received signals.
-                        </p>
-                    </div>
-
-                    <div class="architecture-arrow">→</div>
-
-                    <div class="architecture-block">
-                        <span>3</span>
-                        <h3>Perception</h3>
-                        <p>
-                            Direction information and temporal tracking.
-                        </p>
-                    </div>
-
-                    <div class="architecture-arrow">→</div>
-
-                    <div class="architecture-block highlight">
-                        <span>4</span>
-                        <h3>Beamformer</h3>
-                        <p>
-                            Classical or DRL-based weight adaptation.
-                        </p>
-                    </div>
-
-                    <div class="architecture-arrow">→</div>
-
-                    <div class="architecture-block">
-                        <span>5</span>
-                        <h3>Metrics</h3>
-                        <p>
-                            SINR and radiation-pattern evaluation.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="comparison-box">
-
-                    <div>
-                        <p class="comparison-label">
-                            Reference methods
-                        </p>
-
-                        <h3>
-                            Classical DBF
-                        </h3>
-
-                        <p>
-                            Conventional steering, deterministic null
-                            placement and MVDR provide physically
-                            interpretable reference solutions.
-                        </p>
-                    </div>
-
-
-                    <div>
-                        <p class="comparison-label">
-                            Cognitive method
-                        </p>
-
-                        <h3>
-                            DRL Beamforming
-                        </h3>
-
-                        <p>
-                            Learned policies adapt the beamforming
-                            configuration according to the current and
-                            temporally evolving jammer conditions.
-                        </p>
-                    </div>
-
-                </div>
 
             </div>
+
         </section>
 
 
@@ -347,263 +198,228 @@
              Demo
              ======================================================== -->
 
-        <section id="demo" class="section">
+        <section id="demo" class="section section-alt">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <p class="section-index">03 · Demonstration</p>
+
+                    <p class="section-label">
+                        Minimal Demonstrator
+                    </p>
 
                     <h2>
-                        Minimal executable example
+                        Representative executable example
                     </h2>
 
                     <p>
-                        The public repository intentionally contains a reduced
-                        and self-contained subset of the complete research
-                        framework. Its purpose is to illustrate the principal
-                        simulation workflow without reproducing every
-                        experiment, trained agent or internal development
-                        artifact used during the thesis.
+                        The public repository contains a reduced subset of the complete
+                        research framework. The demonstration notebook reproduces a
+                        representative beamforming scenario and compares different
+                        approaches using the same physical array model.
                     </p>
+
                 </div>
 
 
-                <div class="demo-layout">
+                <div class="demo-points">
 
-                    <div class="demo-description">
+                    <div>
+                        <span>01</span>
 
-                        <h3>
-                            What the notebook demonstrates
-                        </h3>
-
-                        <ul class="check-list">
-                            <li>Array and scenario configuration</li>
-                            <li>SOI and jammer direction definition</li>
-                            <li>Beamforming-weight computation</li>
-                            <li>Lookup-table based configuration when available</li>
-                            <li>Radiation-pattern visualization</li>
-                            <li>Physical performance metrics</li>
-                        </ul>
-
-                        <a
-                            class="text-link"
-                            href="https://github.com/rodriperez194/tfm-cognitive-dbf/blob/main/demo.ipynb"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Inspect demo.ipynb →
-                        </a>
-
+                        <p>
+                            Configure the antenna array and electromagnetic scenario.
+                        </p>
                     </div>
 
+                    <div>
+                        <span>02</span>
 
-                    <div class="code-window">
-                        <div class="code-window-header">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <p>demo.ipynb</p>
-                        </div>
-
-<pre><code>scenario
-    ↓
-array model
-    ↓
-beamformer
-    ↓
-complex weights
-    ↓
-radiation pattern
-    ↓
-SINR / suppression metrics</code></pre>
+                        <p>
+                            Define the SOI and multiple directional jammers.
+                        </p>
                     </div>
+
+                    <div>
+                        <span>03</span>
+
+                        <p>
+                            Compute classical and learned beamforming configurations.
+                        </p>
+                    </div>
+
+                    <div>
+                        <span>04</span>
+
+                        <p>
+                            Evaluate the resulting radiation patterns and SINR.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     Representative figure
+                     ================================================= -->
+
+                <figure class="result-figure">
+
+                    <img
+                        src="assets/demo_beampatterns.png"
+                        alt="Comparison of conventional steering, tracker-driven MVDR and cognitive DRL beampatterns."
+                    >
+
+                    <figcaption>
+                        Representative beampattern comparison for conventional
+                        steering, tracker-driven MVDR and the cognitive DRL
+                        beamformer.
+                    </figcaption>
+
+                </figure>
+
+
+                <div class="demo-link">
+
+                    <a
+                        href="https://github.com/rodriperez194/tfm-cognitive-dbf/blob/main/demo.ipynb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Inspect the executable notebook →
+                    </a>
 
                 </div>
 
             </div>
+
         </section>
 
 
         <!-- ========================================================
-             Repository structure
-             ======================================================== -->
-
-        <section class="section section-alt">
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="section-index">04 · Repository</p>
-
-                    <h2>
-                        Compact public structure
-                    </h2>
-                </div>
-
-
-                <div class="repository-layout">
-
-                    <div class="tree">
-
-<pre><code>tfm-cognitive-dbf/
-│
-├── agents/
-│   └── ...
-│
-├── docs/
-│   ├── index.html
-│   └── style.css
-│
-├── src/
-│   └── ...
-│
-├── demo.ipynb
-├── README.md
-├── requirements.txt
-└── pyproject.toml</code></pre>
-
-                    </div>
-
-
-                    <div class="repository-description">
-
-                        <h3>
-                            Reference implementation
-                        </h3>
-
-                        <p>
-                            The <code>src/</code> directory contains the
-                            reusable reference implementation used by the
-                            demonstration notebook.
-                        </p>
-
-                        <h3>
-                            Executable example
-                        </h3>
-
-                        <p>
-                            <code>demo.ipynb</code> provides the main entry
-                            point for reproducing a representative
-                            beamforming scenario.
-                        </p>
-
-                        <h3>
-                            Trained agents
-                        </h3>
-
-                        <p>
-                            Only selected material required by the public
-                            demonstrator is included. The repository is not
-                            intended to reproduce the complete experimental
-                            history of the thesis.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- ========================================================
-             Run
+             Running the demo
              ======================================================== -->
 
         <section id="run" class="section">
+
             <div class="container">
 
                 <div class="section-heading">
-                    <p class="section-index">05 · Running the Demo</p>
+
+                    <p class="section-label">
+                        Running the Demo
+                    </p>
 
                     <h2>
-                        From clone to execution
+                        Minimal installation
                     </h2>
 
                     <p>
-                        Python dependencies are provided through
-                        <code>requirements.txt</code>. A virtual environment
-                        is recommended.
+                        The example can be executed locally using Python and the
+                        dependencies listed in <code>requirements.txt</code>.
                     </p>
+
                 </div>
 
 
-                <div class="steps">
+                <div class="run-steps">
 
-                    <div class="step">
-                        <span class="step-number">1</span>
+                    <div class="run-step">
+
+                        <span class="step-number">
+                            1
+                        </span>
 
                         <div>
                             <h3>Clone the repository</h3>
 
-<pre><code>git clone https://github.com/rodriperez194/tfm-cognitive-dbf.git
+                            <pre><code>git clone https://github.com/rodriperez194/tfm-cognitive-dbf.git
 cd tfm-cognitive-dbf</code></pre>
                         </div>
+
                     </div>
 
 
-                    <div class="step">
-                        <span class="step-number">2</span>
+                    <div class="run-step">
+
+                        <span class="step-number">
+                            2
+                        </span>
 
                         <div>
                             <h3>Create a virtual environment</h3>
 
-<pre><code>python -m venv .venv</code></pre>
+                            <pre><code>python -m venv .venv</code></pre>
                         </div>
+
                     </div>
 
 
-                    <div class="step">
-                        <span class="step-number">3</span>
+                    <div class="run-step">
+
+                        <span class="step-number">
+                            3
+                        </span>
 
                         <div>
                             <h3>Install the dependencies</h3>
 
-<pre><code>python -m pip install --upgrade pip
+                            <pre><code>python -m pip install --upgrade pip
 pip install -r requirements.txt</code></pre>
                         </div>
+
                     </div>
 
 
-                    <div class="step">
-                        <span class="step-number">4</span>
+                    <div class="run-step">
+
+                        <span class="step-number">
+                            4
+                        </span>
 
                         <div>
-                            <h3>Run the demonstration</h3>
+                            <h3>Run the notebook</h3>
 
                             <p>
-                                Open <code>demo.ipynb</code> with Jupyter or
-                                Visual Studio Code and execute the cells in
-                                order.
+                                Open <code>demo.ipynb</code> using Jupyter or
+                                Visual Studio Code and execute the cells in order.
                             </p>
                         </div>
+
                     </div>
 
                 </div>
 
             </div>
+
         </section>
 
 
         <!-- ========================================================
-             Final CTA
+             Final link
              ======================================================== -->
 
-        <section class="final-cta">
-            <div class="container final-cta-content">
+        <section class="repository-section">
+
+            <div class="container repository-content">
 
                 <div>
-                    <p class="section-index">Source Code</p>
+
+                    <p class="section-label">
+                        Source Code
+                    </p>
 
                     <h2>
-                        Explore the demonstrator on GitHub
+                        Public reference implementation
                     </h2>
 
                     <p>
-                        Source code, installation instructions and the
-                        executable notebook are available in the public
-                        repository.
+                        The source code, selected trained agents and executable
+                        demonstration are available in the public GitHub repository.
                     </p>
+
                 </div>
+
 
                 <a
                     class="button button-light"
@@ -615,6 +431,7 @@ pip install -r requirements.txt</code></pre>
                 </a>
 
             </div>
+
         </section>
 
     </main>
@@ -625,6 +442,7 @@ pip install -r requirements.txt</code></pre>
          ============================================================ -->
 
     <footer class="site-footer">
+
         <div class="container footer-content">
 
             <p>
@@ -636,7 +454,9 @@ pip install -r requirements.txt</code></pre>
             </p>
 
         </div>
+
     </footer>
 
 </body>
+
 </html>
